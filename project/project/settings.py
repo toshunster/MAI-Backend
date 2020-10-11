@@ -25,7 +25,7 @@ SECRET_KEY = '!0b2-!=7q^#uf6*w3f+j)-bb#@4wn#vug3(zhdcs@%2(bdjndh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['213.219.213.68']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'genres',
+    'movies',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +78,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'quack_db',
+        'USER': 'quack',
+        'PASSWORD': 's3cr3t',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
