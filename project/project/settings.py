@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'genres',
     'movies',
     'rest_framework',
+#    'django_storages',
 ]
 
 MIDDLEWARE = [
@@ -121,8 +122,21 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Если используем S3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# Если не хотим использовать S3, а хотим локально
+# всё хранить.
+# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+AWS_ACCESS_KEY_ID = '<access_key_id>'
+AWS_SECRET_ACCESS_KEY = '<secret_access_key>'
+AWS_STORAGE_BUCKET_NAME = '<bucket name>'
+AWS_S3_ENDPOINT_URL = 'http://hb.bizmrg.com'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
