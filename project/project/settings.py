@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'genres',
     'movies',
     'rest_framework',
+    'social_django',
 #    'django_storages',
 ]
 
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -128,10 +130,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Если используем S3
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # Если не хотим использовать S3, а хотим локально
 # всё хранить.
-# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 AWS_ACCESS_KEY_ID = '<access_key_id>'
 AWS_SECRET_ACCESS_KEY = '<secret_access_key>'
@@ -140,3 +142,20 @@ AWS_S3_ENDPOINT_URL = 'http://hb.bizmrg.com'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = 'XXXXXX'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'XXXXX'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email', 'groups', 'wall']
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.vk.VKOAuth2',
+    #'social_core.backends.instagram.InstagramOAuth2',
+    #'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
