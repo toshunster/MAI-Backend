@@ -8,9 +8,9 @@ from .views import login_view, home_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/blogs/', include('blog.urls')),
+    path('api/movies/', include('movies.urls')),
     path('home/', home_view, name='home'),
     path('login/', login_view, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('social_auth/', include('social_django.urls', namespace='social')),
-    #path('api/movies/', include('movies.urls')),
 ]
