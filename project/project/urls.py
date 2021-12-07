@@ -15,8 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
+from rest_framework.routers import DefaultRouter
+
+from movies.views import MovieViewSet
+from .views import login_view, home_view
+
+router = DefaultRouter()
+router.register(r'api/movies', MovieViewSet, basename='movies')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blogs/', include('blogs.urls'))
+    path('home/', home_view, name='home'),
+    path('login/', login_view, name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('social_auth/', include('social_django.urls', namespace='social')),
 ]
+
+urlpatterns += router.urls

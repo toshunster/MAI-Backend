@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mb1n6_aen^#$$+==3hjfj8!yrmplel%8)^^1j4hn1cxa8p-$21'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'genres',
     'movies',
     'rest_framework',
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'quack_db',
+        'NAME': 'quack_mai',
         'USER': 'quack',
         'PASSWORD': 's3cr3t',
         'HOST': '127.0.0.1',
@@ -124,3 +125,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#SOCIAL_AUTH_VK_OAUTH2_KEY = 'XXXXXX'
+#SOCIAL_AUTH_VK_OAUTH2_SECRET = 'XXXXX'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email', 'groups', 'wall']
+SOCIAL_AUTH_VK_APP_USER_MODE = 2
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.vk.VKOAuth2',
+    #'social_core.backends.instagram.InstagramOAuth2',
+    #'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+from local_settings import *
