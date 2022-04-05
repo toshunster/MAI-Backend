@@ -1,7 +1,7 @@
 """project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,23 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.contrib.auth import views as auth_views
-
-from rest_framework.routers import DefaultRouter
-
-from movies.views import MovieViewSet
-from .views import login_view, home_view
-
-router = DefaultRouter()
-router.register(r'api/movies', MovieViewSet, basename='movies')
+from django.urls import path
+from movies.views import movie_index, movie_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', home_view, name='home'),
-    path('login/', login_view, name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('social_auth/', include('social_django.urls', namespace='social')),
+    path('movies/', movie_index),
+    path('movies/page/', movie_page),
 ]
-
-urlpatterns += router.urls
