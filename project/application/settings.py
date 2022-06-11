@@ -127,3 +127,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Если используем S3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# Если не хотим использовать S3, а хотим локально
+# всё хранить.
+#DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+try:
+    from local_settings import *
+except:
+    print("Failed import all from local settings")
+    pass

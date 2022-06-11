@@ -7,7 +7,9 @@ def main():
             'name': fake.name(),
             'address': fake.address(),
             'company': fake.company(),
-            'country': fake.country()
+            'country': fake.country(),
+            'sentence': fake.sentence(),
+            'text': fake.text()
         }
         print(doc)
 

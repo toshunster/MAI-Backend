@@ -1,7 +1,8 @@
-asgiref==3.2.10
+asgiref==3.5.0
 astroid==2.4.2
 attrs==20.3.0
 backcall==0.2.0
+boto==2.49.0
 boto3==1.16.9
 botocore==1.19.9
 certifi==2020.11.8
@@ -12,10 +13,12 @@ cryptography==3.2.1
 cycler==0.10.0
 decorator==4.4.2
 defusedxml==0.7.0rc1
-Django==3.0
+Django==3.2
 django-storages==1.10.1
 djangorestframework==3.12.4
 elasticsearch==7.10.0
+factory-boy==3.2.1
+Faker==13.11.1
 gmane==0.1.dev25
 gunicorn==20.0.4
 hypothesis==5.41.2
@@ -61,6 +64,7 @@ sqlparse==0.4.1
 toml==0.10.1
 traitlets==4.3.3
 typed-ast==1.4.1
-urllib3==1.26.7
+typing_extensions==4.1.1
+urllib3==1.25.11
 wcwidth==0.2.5
 wrapt==1.12.1
