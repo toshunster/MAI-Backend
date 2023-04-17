@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+    web:
+        build: ./project/
+        command: >
+            sh -c "python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:10000"
+        ports:
+            - "1234:10000"
+        networks:
+            - db
+        depends_on:
+            db:
+                condition: service_healthy
+    db:
+        image: postgres:14.7
+        environment:
+            POSTGRES_DB: quack_db_2023
+            POSTGRES_USER: quack_user_2023
+            POSTGRES_PASSWORD: s3cr3t
+            PGDATA: /var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U quack_user_2023 -d quack_db_2023"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
+        restart: unless-stopped
+        deploy:
+            resources:
+                limits:
+                    cpus: '1'
+                    memory: 4G
+        ports:
+            - "5432:5432"
+        volumes:
+            - /Users/a.kukhtichev/sandbox/mai/MAI-Backend/lesson-06/docker.2023/pgdata:/var/lib/postgresql/data
+        networks:
+            - db
+networks:
+    db:
+        driver: bridge

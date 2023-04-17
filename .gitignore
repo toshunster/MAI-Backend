@@ -1,4 +1,7 @@
 *.pyc
+*.aux
+*.log
+pgdata
 venv
 __pycache__
 .DS_Store
